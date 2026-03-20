@@ -110,6 +110,25 @@ python data/scripts/augmentation/augmentation.py \
     --samples 3
 ```
 
+#### 2.6 数据集整合
+
+将所有数据源整合为训练格式：
+
+```bash
+python data/scripts/prepare_dataset.py \
+    --output ./data/processed/contract_sft
+```
+
+支持的输出：
+- 开源数据集：CAIL、DISC-LawLLM、ChatLaw、CUAD
+- 爬取数据：data/processed/cleaned/
+- 增强数据：data/processed/augmented/
+
+输出格式：
+- `train.json` - 训练集 (90%)
+- `val.json` - 验证集 (10%)
+- `all.json` - 全部数据
+
 ### 3. 模型训练
 
 #### 单GPU训练

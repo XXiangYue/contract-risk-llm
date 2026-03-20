@@ -50,5 +50,20 @@
 - [ ] 5.3 使用说明 (README.md)
 
 ## 状态
-- [ ] 进行中
-- [ ] 已完成
+- [x] 进行中
+
+## GitHub仓库
+https://github.com/XXiangYue/contract-risk-llm
+
+## 完成进度
+- [x] 1. 项目结构搭建
+- [x] 2. 开源数据集下载脚本
+- [x] 3. 招投标爬虫
+- [x] 4. PDF解析模块
+- [x] 5. 数据清洗
+- [x] 6. 数据增强
+- [x] 7. Axolotl训练配置
+- [x] 8. vLLM部署脚本
+- [x] 9. API服务
+- [x] 10. 文档与维护
+- [x] 11. GitHub仓库创建
