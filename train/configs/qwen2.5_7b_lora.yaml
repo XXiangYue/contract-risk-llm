@@ -1,0 +1,99 @@
+# Axolotl LoRA Fine-tuning Config for Qwen2.5-7B
+# 合同合规审查与风险预警大模型
+
+base_model: Qwen/Qwen2.5-7B
+model_revision: main
+torch_dtype: bfloat16
+
+# 训练数据
+datasets:
+  - path: data/processed/contract_sft
+    type: chat_template.format:${field}
+    split: train
+
+dataset_prepared_path: data/processed/contract_sft_trainval
+
+# 输出配置
+output_dir: outputs/qwen2.5_7b_lora_contract
+logging_dir: outputs/logs
+
+# LoRA配置
+lora_config:
+  - module: q_proj
+    rank: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  - adapter: lora
+  - r: 16
+  - lora_alpha: 32
+  - lora_dropout: 0.05
+
+# 训练参数
+sequence_len: 8192
+max_seq_len: 8192
+sample_packing: true
+pad_to_sequence_len: true
+
+# 优化器
+optimizer:
+  type: adamw_torch
+  lr: 1e-4
+  weight_decay: 0.01
+  beta1: 0.9
+  beta2: 0.999
+
+# 学习率调度
+lr_scheduler: cosine
+warmup_ratio: 0.1
+cosine_lr_constant_ratio: 0.1
+
+# 训练轮次
+epochs: 3
+batch_size: 2
+gradient_accumulation_steps: 4
+micro_batch_size: 1
+
+# 梯度处理
+max_grad_norm: 1.0
+gradient_checkpointing: true
+checkpointing_steps: 100
+save_total_limit: 3
+
+# DeepSpeed配置
+deepspeed:
+  config:
+    train_batch_size: auto
+    train_micro_batch_size_per_gpu: auto
+    gradient_accumulation_steps: auto
+    gradient_clipping: 1.0
+    zero_optimization:
+      stage: 2
+      offload_optimizer: device
+      allgather_partitions: true
+      allgather_bucket_size: 2e8
+      reduce_scatter: true
+      reduce_bucket_size: 2e8
+    fp16:
+      enabled: false
+    bf16:
+      enabled: true
+    steps_per_print: 10
+
+# Flash Attention
+flash_attn: true
+
+# 混合精度
+bf16: true
+fp16: false
+
+# 日志
+logging_steps: 10
+eval_steps: 100
+save_steps: 100
+dataloader_num_workers: 4
+
+# 其他
+seed: 42
+do_train: true
+do_eval: false

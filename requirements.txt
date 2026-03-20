@@ -1,0 +1,27 @@
+# 合同合规审查与风险预警大模型 - 依赖包
+
+# 基础依赖
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+
+# PDF解析
+pdfplumber>=0.8.0
+PyMuPDF>=1.20.0
+
+# 数据处理
+pandas>=1.5.0
+numpy>=1.23.0
+
+# 数据增强 (可选)
+openai>=1.0.0
+
+# 训练相关 (可选)
+transformers>=4.30.0
+torch>=2.0.0
+axolotl>=0.1.0
+
+# API服务 (可选)
+fastapi>=0.100.0
+uvicorn>=0.22.0
+pydantic>=2.0.0
