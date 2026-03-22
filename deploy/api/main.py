@@ -37,7 +37,7 @@ class ChatMessage(BaseModel):
 
 
 class ChatCompletionRequest(BaseModel):
-    model: str = "qwen2.5-7b-contract"
+    model: str = "Qwen/Qwen3.5-2B-contract"
     messages: List[ChatMessage]
     temperature: Optional[float] = 0.7
     max_tokens: Optional[int] = 2048
@@ -102,7 +102,7 @@ async def contract_review(request: ContractReviewRequest):
         ]
         
         payload = {
-            "model": "qwen2.5-7b-contract",
+            "model": "Qwen/Qwen3.5-2B-contract",
             "messages": messages,
             "temperature": 0.3,
             "max_tokens": 2048,
@@ -140,7 +140,7 @@ async def batch_review(contracts: List[str]):
             ]
             
             payload = {
-                "model": "qwen2.5-7b-contract",
+                "model": "Qwen/Qwen3.5-2B-contract",
                 "messages": messages,
                 "temperature": 0.3,
                 "max_tokens": 2048,
