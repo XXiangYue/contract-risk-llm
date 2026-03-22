@@ -1,6 +1,6 @@
 # 【智审】企业级长文本招投标文件及合同合规性审查与风险预警大模型
 
-基于 Qwen2.5-7B 的企业合同合规审查大模型项目。
+基于 Qwen3.5-2B 的企业合同合规审查大模型项目。
 
 ## 项目概述
 
@@ -8,7 +8,7 @@
 
 ## 技术栈
 
-- **基础模型**: Qwen2.5-7B
+- **基础模型**: Qwen3.5-2B
 - **训练框架**: Axolotl + DeepSpeed + FlashAttention-2
 - **微调技术**: LoRA / QLoRA
 - **推理部署**: vLLM (高吞吐批量处理)
@@ -33,7 +33,7 @@
 │   └── processed/             # 处理后数据
 ├── train/                     # 训练模块
 │   ├── configs/               # Axolotl配置
-│   │   ├── qwen2.5_7b_lora.yaml
+│   │   ├── qwen3.5_2b_lora.yaml
 │   │   └── deepspeed.json
 │   └── scripts/               # 训练脚本
 │       ├── single_gpu_train.sh
@@ -189,7 +189,7 @@ curl -X POST http://localhost:8080/api/contract/batch-review \
 
 ### 训练配置
 
-主要配置项在 `train/configs/qwen2.5_7b_lora.yaml`：
+主要配置项在 `train/configs/qwen3.5_2b_lora.yaml`：
 
 - `sequence_len`: 序列长度 (默认8192)
 - `lora_config`: LoRA参数配置
